@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script>
+  /** 
+* 当前注释 
+* 作者:liliang 创建于:2017-04-28 01:47:47
+*/ 
+
+    //此处写代码 
+    window.onload = function() {
+    createList();
+	onload=goPage(1,24)
+}
+    function createList() {//列表内容部分
+        var itable = document.getElementById("idData");
+               
+        for (var i = 0; i < ojson.data.length; i++) {
+            var goods = '<li class="b-item fl"><div class="i-wrap">';
+                goods+='<a class="i-link" href='+ojson.data[i].wrapaLink+' target="_blank">';
+                goods+='<img src='+ojson.data[i].Imgsrc+'></a>';
+                goods+='<div class="i-price"><strong>¥ <span>'+ojson.data[i].price+i+'</span></strong></div>';
+                goods+='<div class="i-txt"><a href='+ojson.data[i].textaLink+'target="_blank">'+ojson.data[i].textText+'</a></div>';
+                goods+='<div class="i-comment"><span>已有 <a href='+ojson.data[i].pingjiaaLink+'target="_blank">10万+</a> 人评价</span></div>'
+                goods+='<div class="i-operate"><a class="i-focus" href="javascript:void(0);">关注</a>';
+                goods+='<a class="i-buy" href="" target="_blank">加入购物车</a></div></div></li>';
+            //console.log(goods);
+            itable.innerHTML += goods;        
+       // console.log(itable + "呵呵");
+        }
+    }
+
+//分页部分
+function goPage(pno, psize) { //分页区域
+    var itable = document.getElementById("idData");
+    var oLi = itable.getElementsByTagName("li");
+    var num = oLi.length; //(所有记录数)
+    var totalPage =Math.ceil(num/psize); //总页数
+    //console.log(totalPage);
+    var pageSize = psize; //每页显示行数
+    var currentPage = pno; //当前页数
+    var startPage = (currentPage - 1) * pageSize + 1; //开始显示数目
+    var endPage = currentPage * pageSize; //结束显示的数目
+    //console.log(endRow);
+    //遍历显示数据实现分页
+    for (var i = 1; i < (num + 1); i++) {
+        var irow = oLi[i - 1];
+        if (i >= startPage && i <= endPage) {
+            irow.style.display = "block";
+        } else {
+            irow.style.display = "none";
+        }
+    }
+//
+    //总共分几页 
+    if (num / pageSize >= parseInt(num / pageSize)) {
+        totalPage = parseInt(num / pageSize) + 1;
+    } else {
+        totalPage = parseInt(num / pageSize);
+    }
+
+//
+//<span class="fp-txt"><b>1</b>/<i>190</i></span>
+//<a class="fp-prev disable" href="javascript:void(0);"> &lt; </a>
+//<a class="fp-next" href=""> &gt; </a>
+
+//
+    var tempStr = "<span class='fp-txt'><b>"+currentPage+'</b>/<i>'+ totalPage+"</i></span>";
+    if (currentPage > 1) {        
+        tempStr += "<a class='fp-prev disable' href='javascript:void(0)' onClick='goPage(" + (currentPage - 1) + ',' + psize + ")'>&lt;</a>";
+    } else {    
+        tempStr += "<a class='fp-prev disable' href='javascript:void(0);'> &lt; </a>";
+    }
+
+    if (currentPage < totalPage) {
+        tempStr += "<a class='fp-next' href='javascript:void(0)' onClick='goPage(" + (currentPage + 1) + ',' + psize + ")'>&gt;</a>";
+    } else {
+        tempStr += "<a class='fp-prev disable' href='javascript:void(0);'>&gt;</a>";
+    }console.log(tempStr);
+    document.getElementById("fenpage").innerHTML = tempStr;
+}
+//分页结束
+    var ojson={data:[//json应该单独放在文件里
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        {
+        wrapaLink:'#',
+        Imgsrc:'https://img11.360buyimg.com/n7/jfs/t2968/143/2485546147/238650/70df281e/57b12a31N8f4f75a3.jpg',
+        price:'6988.00',
+        textaLink:'#',
+        textText:'Apple MacBook Air 13.3英寸笔记本电脑 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)',
+        pingjiaaLink:'#',
+        pingjiaText:'10',
+        },
+        ]}
+
+
+
+
+
+	
+
+
+
+
+
+
+
+  </script>
+ </head>
+ <body>
+  
+	<ul id="idData" class="b-wrap clearfix"></ul>
+  <div id="fenpage" class="f-page fr">
+						<!-- <span class="fp-txt"><b>1</b>/<i>190</i></span>
+						<a class="fp-prev disable" href="javascript:void(0);"> &lt; </a>
+						<a class="fp-next" href=""> &gt; </a> -->
+					</div>
+ </body>
+</html>
